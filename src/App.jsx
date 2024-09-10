@@ -6,7 +6,7 @@ import SideNavbarComponent from './components/SideNavbarComponent/SideNavbarComp
 const App = () => {
   return (
     <Router>
-      <div className='flex'>
+      <div className='flex '>
         <SideNavbarComponent/>
         <RouterComponent/>
       </div> 

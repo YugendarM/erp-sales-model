@@ -7,12 +7,14 @@ import DashboardPageComponent from '../../pages/DashboardPageComponent/Dashboard
 const RouterComponent = () => {
   return (
     <div className='w-3/4 flex'>
-      <div className='w-[350px]'></div>
+      {/* <div className='w-[350px]'></div> */}
+      <div className='w-full my-10 px-5'>
       <Routes>
         <Route exact path='/' element={<DashboardPageComponent/>}/>
         <Route path='/customers' element={<CustomerPageComponent/>}/>
         <Route path='/vendors' element={<VendorsPageComponent/>}/>
       </Routes>
+      </div>
     </div>
   )
 }
