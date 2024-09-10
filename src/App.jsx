@@ -1,10 +1,16 @@
 import React from 'react'
+import RouterComponent from './components/RouterComponent/RouterComponent'
+import { BrowserRouter as Router } from 'react-router-dom'
+import SideNavbarComponent from './components/SideNavbarComponent/SideNavbarComponent'
 
 const App = () => {
   return (
-    <div className='text-red-500 text-xl font-bold'>
-      This is the app
-    </div>
+    <Router>
+      <div className='flex'>
+        <SideNavbarComponent/>
+        <RouterComponent/>
+      </div> 
+    </Router>
   )
 }
 
