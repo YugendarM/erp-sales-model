@@ -11,7 +11,7 @@ const SideNavbarComponent = () => {
   console.log(pathname)
 
   return (
-    <div className='w-[350px] flex justify-center h-screen my-10'>
+    <div className='w-[350px] md:flex justify-center h-screen my-10 hidden '>
       <div className='w-[80%] rounded-md h-full bg-gradient-to-b from-[#414141] to-[#191919]'>
         <div className='w-full flex justify-center py-5'>
           <img src='https://erp-accounts.vercel.app/static/media/syncroFlow.cf4cf8f7da3b4fd82066.png' alt='syncro-flow-logo' className='border-b border-b-white object-contain w-3/4'/>

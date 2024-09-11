@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryBlue: "#007BFF"
+        primaryBlue: "#007BFF",
+        headerText: "#344767"
       },
       boxShadow: {
         'custom-light': '0 0 10px rgba(0, 0, 0, 0.1)',
