@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { IoChevronDown, IoChevronUp, IoSearch } from "react-icons/io5";
 import vendorsData from "../../data/vendorsData"
-import { Breadcrumb, Button, Dropdown, Menu, Space } from 'antd';
+import { Breadcrumb, Button, Dropdown, Form, Input, Menu, Modal, Space } from 'antd';
 import { IoMdHome } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { useForm } from 'antd/es/form/Form';
 
 const VendorsPageComponent = () => {
 
@@ -12,6 +13,20 @@ const VendorsPageComponent = () => {
   const [isSortOrFilterApplied, setIsSortOrFilterApplied] = useState(false)
   const [sortButtonContent, setSortButtonContent] = useState(null)
   const [filterButtonContent, setFilterButtonContent] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [vendorInputData, setVendorInputData] = useState({})
+
+  const [form] = Form.useForm();
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const handleVendorSelect = () => {
 
@@ -46,6 +61,22 @@ const VendorsPageComponent = () => {
       return b.vendorName.localeCompare(a.vendorName);
     });
     setVendorData(sortedVendorData);
+  }
+
+  const handleSubmit = (values) => {
+    // console.log('Success:', values);
+    setVendorData((prev) => [...prev, values])
+    setIsModalOpen(false)
+    alert("Vendor added to the list")
+  };
+
+  const handleFormChange = (changedValues, allValues) => {
+    setVendorInputData(allValues); // Update the state with all the form data
+    console.log(vendorInputData); // This will print the updated form state
+  };
+
+  const handleFormClear = () => {
+    form.resetFields()
   }
 
   const filterItems = [
@@ -119,7 +150,12 @@ const VendorsPageComponent = () => {
       <div className=' shadow-custom-medium rounded-md w-full flex flex-col '>
         <div className='flex items-center justify-between px-5 py-5'>
           <h1 className='text-2xl font-medium text-headerText'>Vendors</h1>
-          <button className='bg-primaryBlue text-white rounded-md px-2 py-1.5'>+ Add New</button>
+          <button 
+            className='bg-primaryBlue text-white rounded-md px-2 py-1.5'
+            onClick={showModal}
+          >
+            + Add New
+          </button>
         </div>
 
         <div className=' search-filter-container  flex items-center justify-between px-5'>
@@ -220,6 +256,115 @@ const VendorsPageComponent = () => {
             </div>
         </div>
       </div>
+
+      <Modal 
+        title="Add new Vendor" 
+        open={isModalOpen} 
+        onOk={handleOk} 
+        onCancel={handleCancel}
+        footer={[]}
+      >
+        <Form
+          form = {form}
+          name="basic"
+          labelCol={{
+            span: 8,
+          }}
+          wrapperCol={{
+            span: 16,
+          }}
+          style={{
+            maxWidth: 600,
+          }}
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={handleSubmit}
+          autoComplete="off"
+          onValuesChange={handleFormChange}
+        >
+          <Form.Item
+            label="Vendor Name"
+            name="vendorName"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the Vendor Name!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="GST No"
+            name="gstNo"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the GST Number!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="PAN No"
+            name="panNo"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the PAN Number!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Address"
+            name="address"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the Address!',
+              },
+            ]}
+          >
+            <Input/>
+          </Form.Item>
+
+          <Form.Item
+            label="Contact No"
+            name="contactNo"
+            rules={[
+              {
+                required: true,
+                message: 'Please enter the Contact Number!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            wrapperCol={{
+              offset: 16,
+              span: 16,
+            }}
+            className=''
+          >
+            
+            <Button htmlType="button" onClick={handleFormClear}>
+              Clear
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   )
 }
