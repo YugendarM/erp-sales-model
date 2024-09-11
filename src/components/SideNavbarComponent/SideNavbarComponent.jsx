@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { TbLayoutDashboard, TbLayoutDashboardFilled } from "react-icons/tb";
 import { BsPeople, BsPeopleFill } from "react-icons/bs";
-import { FaHandshake, FaRegHandshake } from "react-icons/fa6";
+import { FaCreditCard, FaHandshake, FaRegCreditCard, FaRegHandshake } from "react-icons/fa6";
 
 
 const SideNavbarComponent = () => {
@@ -24,19 +24,17 @@ const SideNavbarComponent = () => {
             Dashboard
           </Link>
 
-          <Link to={"/customers"} className={`text-white text-md flex items-center py-4 px-8  rounded-lg gap-5 ${pathname === "/customers" ? "bg-primaryBlue" : "hover:bg-[#636363]"}`}>{
-            pathname === "/customers" ? <BsPeopleFill className='text-2xl'/> : < BsPeople className='text-2xl'/>
-          }
-            Customers
-          </Link>
-
           <Link to={"/vendors"} className={`text-white text-md flex items-center py-4 px-8  rounded-lg gap-5 ${pathname === "/vendors" ? "bg-primaryBlue" : "hover:bg-[#636363]"}`}>{
             pathname === "/vendors" ? <FaHandshake className='text-2xl'/> : < FaRegHandshake className='text-2xl'/>
           }
             Vendors
           </Link>
 
-          
+          <Link to={"/payables"} className={`text-white text-md flex items-center py-4 px-8  rounded-lg gap-5 ${pathname === "/payables" ? "bg-primaryBlue" : "hover:bg-[#636363]"}`}>{
+            pathname === "/payables" ? <FaCreditCard className='text-2xl'/> : < FaRegCreditCard className='text-2xl'/>
+          }
+            Payables
+          </Link>
 
         </nav>
       </div>
