@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { FaRupeeSign, FaWallet } from "react-icons/fa";
 import { FaUserTie } from "react-icons/fa";
@@ -6,12 +6,64 @@ import { HiUserGroup } from "react-icons/hi2";
 import { IoDocumentText } from 'react-icons/io5';
 import PayablesReceivableBarChart from '../../components/PayablesReceivableBarChart/PayablesReceivableBarChart';
 import InvoiceStatusChart from '../../components/InvoiceStatusChart/InvoiceStatusChart';
+import payablesData from "../../data/payablesData"
+import vendorsData from "../../data/vendorsData"
+import receivablesData from "../../data/receivablesData"
 
 const DashboardPageComponent = () => {
 
   const [people, setPeople] = useState("vendors")
   const [option, setOption] = useState("Today")
   const [optionOpen, setOptionOpen] = useState(false)
+  const [payables, setPayables] = useState(payablesData)
+  const [receivables, setReceivables] = useState(receivablesData)
+  const [totalPayables, setTotalPayables] = useState(0)
+  const [payablesDueToday, setPayableDueToday] = useState(0)
+  const [totalReceivables, setTotalReceivables] = useState(0)
+  const [receivablesOverDue, setReceivablesOverDue] = useState(0)
+  const [totalVendors, setTotalVendors] = useState(0)
+  const [totalCustomers, setTotalCustomers] = useState(0)
+
+  const formatRupees = (amount) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  const today = new Date()
+
+  const isDueToday = (date) => {
+    const dueDate = new Date(date)
+    return (dueDate.getDate() === today.getDate() && dueDate.getMonth() === today.getMonth() && dueDate.getFullYear() === today.getFullYear())
+  }
+
+  useEffect(() => {
+    let totalPayables = 0;
+    let duePayables = 0;
+    payables.map((data) => {
+      totalPayables += data.amount
+      if(isDueToday(data.dueDate)){
+        duePayables += data.amount
+      }
+    })
+
+    let totalReceivables = 0
+    let overDueReceivables = 0
+    receivables.map((data) => {
+      totalReceivables += data.amount
+      if(data.paymentStatus === "Pending"){
+        overDueReceivables += data.amount
+      }
+    })
+
+    setTotalPayables(totalPayables)
+    setPayableDueToday(duePayables)
+    setTotalReceivables(totalReceivables)
+    setReceivablesOverDue(overDueReceivables)
+    setTotalVendors(vendorsData.length)
+  },[])
 
   return (
     <div className='flex flex-col gap-20 w-full h-[95vh] py-5 md:py-20 overflow-y-scroll no-scrollbar px-5'>
@@ -20,8 +72,8 @@ const DashboardPageComponent = () => {
             <FaRupeeSign className='text-primaryBlue text-2xl'/>
             <h1 className='text-lg font-bold'>Payables</h1>
             <div className='flex flex-col gap-2'>
-              <p className='text-xs text-gray-500'>Total payables: <span className='font-medium'>₹ {"25,000"}</span></p>
-              <p className='text-xs text-gray-500'>Total payables: <span className='font-medium'>₹ {"12,000"}</span></p>
+              <p className='text-xs text-gray-500'>Total payables: <span className='font-medium'>{formatRupees(totalPayables)}</span></p>
+              <p className='text-xs text-gray-500'>Total payables: <span className='font-medium'>{formatRupees(payablesDueToday)}</span></p>
             </div>
         </div>
 
@@ -29,8 +81,8 @@ const DashboardPageComponent = () => {
             <IoDocumentText className='text-primaryBlue text-2xl'/>
             <h1 className='text-lg font-bold'>Receivables</h1>
             <div className='flex flex-col gap-2'>
-              <p className='text-xs text-gray-500'>Total receivables: <span className='font-medium'>₹ {"25,000"}</span></p>
-              <p className='text-xs text-gray-500'>Overdue: <span className='font-medium'>₹ {"12,000"}</span></p>
+              <p className='text-xs text-gray-500'>Total receivables: <span className='font-medium'>{formatRupees(totalReceivables)}</span></p>
+              <p className='text-xs text-gray-500'>Overdue: <span className='font-medium'>{formatRupees(receivablesOverDue)}</span></p>
             </div>
             <div className='absolute -top-4 right-6'>
               <button className=' bg-primaryBlue justify-between text-white rounded-md px-4 py-1.5 flex items-center font-medium w-36 text-center' onClick={() => setOptionOpen((prev) => !prev)}>
@@ -52,10 +104,10 @@ const DashboardPageComponent = () => {
 
         <div className='rounded-lg hover:transform hover:-translate-y-2 transition shadow-custom-medium hover:shadow-custom-heavy p-5 w-full flex flex-col gap-3'>
             <FaWallet className='text-primaryBlue text-2xl'/>
-            <h1 className='text-lg font-bold'>Leger Balance</h1>
+            <h1 className='text-lg font-bold'>Ledger Balance</h1>
             <div className='flex flex-col gap-2'>
               <p className='text-xs text-gray-500'>Current Balance: <span className='font-medium'>₹ {"25,000"}</span></p>
-              <p className='text-xs text-gray-500'>Last updated: <span className='font-medium'>₹ {"12 Aug 2024"}</span></p>
+              <p className='text-xs text-gray-500'>Last updated: <span className='font-medium'>{"12 Aug 2024"}</span></p>
             </div>
         </div>
 
@@ -71,7 +123,7 @@ const DashboardPageComponent = () => {
             </div>
             <h1 className='text-lg font-bold'>{people === "vendors" ? "Vendors" : "Customers"}</h1>
             <div className='flex flex-col gap-2'>
-              <p className='text-4xl font-extrabold text-gray-500'>{people === "vendors" ? "23,34,555" : "53,41,234"}</p>
+              <p className='text-4xl font-extrabold text-gray-500'>{people === "vendors" ? totalVendors : totalCustomers}</p>
             </div>
         </div>
 

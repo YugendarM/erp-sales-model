@@ -9,14 +9,6 @@ import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 
 const PayablesPageComponent = () => {
 
-  const [categorySearch, setCategorySearch] = useState("")
-  const [accNoSearch, setAccNoSearch] = useState("")
-  const [invoiceNoSearch, setInvoiceNoSearch] = useState("")
-  const [amountSearch, setAmountSearch] = useState("")
-  const [invoiceDateSearch, setInvoiceDateSearch] = useState(null)
-  const [dueDateSearch, setDueDateSearch] = useState(null)
-  const [paymentStatusSearch, setPaymentStatusSearch] = useState(null)
-
   const [searchData, setSearchData] = useState({
     categorySearch: "",
     accNoSearch: "",
@@ -283,8 +275,8 @@ const PayablesPageComponent = () => {
         <div className='w-full'>
             <div className=' w-full'>
               <div className='w-full '>
-                <div className='table-header-container border-b border-b-gray-200 flex items-center px-3 py-3 md:py-5 font-medium text-left gap-2'>
-                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-[15%] text-sm px-2 mx-1'>
+                <div className='table-header-container border-b border-b-gray-200 flex flex-col lg:flex-row items-center px-3 py-3 md:py-5 font-medium text-left gap-2'>
+                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-full lg:w-[15%] text-sm px-2'>
                     <IoSearch className='text-sm text-gray-400'/>
                     <input 
                       className=' focus:outline-none w-full text-sm placeholder:text-xs' 
@@ -295,7 +287,7 @@ const PayablesPageComponent = () => {
                       onChange={(event) => handleSearchDataChange(event)}
                     />
                   </div>
-                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-[13%] text-sm px-2'>
+                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-full lg:w-[13%] text-sm px-2'>
                     <IoSearch className='text-sm text-gray-400'/>
                     <input 
                       className=' focus:outline-none w-full text-sm placeholder:text-xs'
@@ -306,7 +298,7 @@ const PayablesPageComponent = () => {
                       onChange={(event) => handleSearchDataChange(event)}
                     />
                   </div>
-                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-[13%] text-sm px-2'>
+                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-full lg:w-[13%] text-sm px-2'>
                     <IoSearch className='text-sm text-gray-400'/>
                     <input 
                       className=' focus:outline-none w-full text-sm placeholder:text-xs'
@@ -317,7 +309,7 @@ const PayablesPageComponent = () => {
                       onChange={(event) => handleSearchDataChange(event)}
                     />
                   </div>
-                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-[13%] text-sm px-2'>
+                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-full lg:w-[13%] text-sm px-2'>
                     <IoSearch className='text-sm text-gray-400'/>
                     <select className='text-xs text-gray-400 py-0.5 focus:outline-none cursor-pointer' name='invoiceDateSearch' onChange={(event) => handleSearchDataChange(event)}>
                       <option className='' disabled selected>Select Date</option>
@@ -327,7 +319,7 @@ const PayablesPageComponent = () => {
                       <option className='text-black' value="thisYear">This year</option>
                     </select>
                   </div>
-                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-[13%] text-sm px-2'>
+                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-full lg:w-[13%] text-sm px-2'>
                     <IoSearch className='text-sm text-gray-400'/>
                     <input 
                       className=' focus:outline-none w-full text-sm placeholder:text-xs'
@@ -338,7 +330,7 @@ const PayablesPageComponent = () => {
                       onChange={(event) => handleSearchDataChange(event)}
                     />
                   </div>
-                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-[13%] text-sm px-2'>
+                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-full lg:w-[13%] text-sm px-2'>
                     <IoSearch className='text-sm text-gray-400'/>
                     <select className='text-xs text-gray-400 py-0.5 focus:outline-none cursor-pointer' name='dueDateSearch' onChange={(event) => handleSearchDataChange(event)}>
                       <option className=''  disabled selected>Select Date</option>
@@ -348,7 +340,7 @@ const PayablesPageComponent = () => {
                       <option className='text-black' value="thisYear">This year</option>
                     </select>
                   </div>
-                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-[13%] text-sm px-2'>
+                  <div className='rounded-md py-1 shadow-custom-light flex items-center gap-2 w-full lg:w-[13%] text-sm px-2'>
                     <IoSearch className='text-sm text-gray-400'/>
                     <select className='text-xs text-gray-400 py-0.5 focus:outline-none cursor-pointer' name='paymentStatusSearch' onChange={(event) => handleSearchDataChange(event)}>
                       <option className='' disabled selected>Select Status</option>

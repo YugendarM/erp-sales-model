@@ -14,7 +14,7 @@ const payables = [
       invoiceNo: "INV-1002",
       invoiceDate: new Date("2024-09-13"),
       amount: 3200.50,
-      dueDate: new Date("2024-09-13"),
+      dueDate: new Date("2024-09-12"),
       paymentStatus: "Paid"
     },
     {
