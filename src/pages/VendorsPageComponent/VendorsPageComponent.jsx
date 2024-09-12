@@ -235,15 +235,12 @@ const VendorsPageComponent = () => {
                   <h2 className='w-2/12'> Contact No</h2>
                 </div>
               </div>
-              <div className='table-body-container w-full h-[65vh] overflow-scroll '>
+              <div className='table-body-container w-full h-[62vh] overflow-y-scroll no-scrollbar'>
                 {vendorData.map((row, index) => (
                   <div
                     onClick={handleVendorSelect}
                     className='text-xs border-b border-b-gray-200 hover:bg-gray-300 cursor-pointer transition flex items-center px-5 py-3 md:py-5 '
                     key={index}
-                    // onClick={() => {
-                    //   handleVendorClick(row.AccountCode);
-                    // }}
                   >
                     <p className='w-3/12 '>{row.vendorName}</p>
                     <p className='w-2/12 '>{row.gstNo}</p>
