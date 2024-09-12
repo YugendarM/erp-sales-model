@@ -134,7 +134,7 @@ const VendorsPageComponent = () => {
   }, [vendorSearch])
 
   return (
-    <div className='flex flex-col justify-start items-start min-w-full gap-4'>
+    <div className='flex flex-col justify-start items-start min-w-full gap-4 px-5'>
       <div className='breadcrum-container'>
         <Breadcrumb className='text-headerText text-base'
           items={[

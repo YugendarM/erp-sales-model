@@ -153,23 +153,6 @@ const PayablesPageComponent = () => {
     items: sortItems
   };
 
-  // useEffect(() => {
-  //   if(categorySearch.length !== 0){
-  //     setIsSortOrFilterApplied(true)
-  //   }
-  //   const filteredPayableData = payablesData.filter((payable) => {
-  //     if(categorySearch.length > 0){
-  //       payable.category.toLowerCase().includes(categorySearch)
-  //     }
-  //   })
-  //   setPayableData(filteredPayableData)
-  //   console.log("categorySearch", categorySearch)
-  //   console.log("accNoSearch" + accNoSearch)
-  //   console.log("amountSearch" + amountSearch)
-  //   console.log("invoiceSearch" + invoiceNoSearch)
-  // }, [categorySearch, accNoSearch, invoiceNoSearch, amountSearch])
-
-
   useEffect(() => {
     if (
       searchData.categorySearch.length !== 0 ||
@@ -248,7 +231,7 @@ const PayablesPageComponent = () => {
   
 
   return (
-    <div className='flex flex-col justify-start items-start min-w-full gap-4'>
+    <div className='flex flex-col justify-start items-start min-w-full gap-4 px-5'>
       <div className='breadcrum-container'>
         <Breadcrumb className='text-headerText text-base'
           items={[

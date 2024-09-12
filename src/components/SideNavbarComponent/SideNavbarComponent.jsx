@@ -8,7 +8,6 @@ import { FaCreditCard, FaHandshake, FaRegCreditCard, FaRegHandshake } from "reac
 const SideNavbarComponent = () => {
 
   const {pathname} = useLocation()
-  console.log(pathname)
 
   return (
     <div className='w-[350px] md:flex justify-center h-screen my-10 hidden '>

@@ -14,7 +14,7 @@ const DashboardPageComponent = () => {
   const [optionOpen, setOptionOpen] = useState(false)
 
   return (
-    <div className='flex flex-col gap-20'>
+    <div className='flex flex-col gap-20 w-full h-[95vh] py-5 md:py-20 overflow-y-scroll no-scrollbar px-5'>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ga w-full gap-6'>
         <div className='rounded-lg hover:transform hover:-translate-y-2 transition shadow-custom-medium hover:shadow-custom-heavy p-5 w-full flex flex-col gap-3'>
             <FaRupeeSign className='text-primaryBlue text-2xl'/>

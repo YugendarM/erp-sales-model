@@ -8,7 +8,7 @@ const RouterComponent = () => {
   return (
     <div className='w-full md:w-3/4 flex'>
       {/* <div className='w-[350px]'></div> */}
-      <div className='w-full my-10 px-5'>
+      <div className='w-full md:my-10 '>
       <Routes>
         <Route exact path='/' element={<DashboardPageComponent/>}/>
         <Route path='/payables' element={<PayablesPageComponent/>}/>
